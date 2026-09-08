@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ai-stuff-chunked-v1 encoder</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --ink: #e7ecf3;
+      --muted: #93a1b5;
+      --accent: #6ee7b7;
+      --accent-2: #7dd3fc;
+      --danger: #fca5a5;
+      --line: #2a3648;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 15px/1.45 ui-sans-serif, system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #1b3a4a 0%, transparent 50%),
+                  radial-gradient(900px 500px at 100% 0%, #243018 0%, transparent 45%),
+                  var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+    h1 { font-size: 1.4rem; margin: 0 0 8px; }
+    .lede { color: var(--muted); margin: 0 0 24px; }
+    .card {
+      background: color-mix(in srgb, var(--card) 88%, transparent);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    label { display: block; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    input[type="file"], select, button, input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #0d1218;
+      color: var(--ink);
+      font: inherit;
+    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 640px) { .row { grid-template-columns: 1fr; } }
+    button {
+      cursor: pointer;
+      background: linear-gradient(180deg, #34d399, #059669);
+      color: #04210f;
+      font-weight: 700;
+      border: 0;
+      margin-top: 12px;
+    }
+    button.secondary {
+      background: #243044;
+      color: var(--ink);
+    }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+    .tabs button { margin: 0; flex: 1; }
+    .tabs button.active { outline: 2px solid var(--accent); }
+    #log {
+      white-space: pre-wrap;
+      font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: var(--accent-2);
+      min-height: 3em;
+    }
+    .warn { color: var(--danger); font-size: 13px; }
+    a { color: var(--accent); }
+    .hidden { display: none; }
+    .file-list { font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Chunked file encoder</h1>
+    <p class="lede">
+      Protocol <code>ai-stuff-chunked-v1</code>. Runs entirely in this browser tab — nothing is uploaded to a server.
+      Open this file from disk (<code>file://</code>) so it can read your local files.
+    </p>
+
+    <div class="tabs">
+      <button id="tab-encode" class="active" type="button">Encode (split)</button>
+      <button id="tab-decode" class="secondary" type="button">Decode (restore)</button>
+    </div>
+
+    <section id="encode-panel" class="card">
+      <label>Source file (any format)</label>
+      <input id="src" type="file" />
+      <div class="row" style="margin-top:12px">
+        <div>
+          <label>Raw payload bytes per chunk</label>
+          <select id="chunk-size">
+            <option value="150000">150 KB — strict UIs</option>
+            <option value="400000" selected>400 KB — default</option>
+            <option value="800000">800 KB</option>
+            <option value="1500000">1.5 MB — if the UI allows it</option>
+          </select>
+        </div>
+        <div>
+          <label>Custom payload bytes</label>
+          <input id="chunk-custom" type="number" min="1024" step="1024" placeholder="optional override" />
+        </div>
+      </div>
+      <p class="warn">Download this HTML first, then open the downloaded file. An agent live-preview page cannot see your disk.</p>
+      <button id="btn-zip" type="button">Build zip of manifest + chunks</button>
+      <button id="btn-parts" class="secondary" type="button">Download parts one by one</button>
+    </section>
+
+    <section id="decode-panel" class="card hidden">
+      <label>Drop manifest + part-NNNN.txt files (or a previous zip unpacked)</label>
+      <input id="parts" type="file" multiple />
+      <button id="btn-restore" type="button">Restore original</button>
+      <p class="file-list" id="parts-list"></p>
+    </section>
+
+    <section class="card">
+      <label>Log</label>
+      <div id="log">Ready.</div>
+    </section>
+  </main>
+  <script>
+    const PROTOCOL = "ai-stuff-chunked-v1";
+    const logEl = document.getElementById("log");
+    function log(msg) { logEl.textContent = msg; }
+
+    document.getElementById("tab-encode").onclick = () => setMode("encode");
+    document.getElementById("tab-decode").onclick = () => setMode("decode");
+    function setMode(mode) {
+      const enc = mode === "encode";
+      document.getElementById("encode-panel").classList.toggle("hidden", !enc);
+      document.getElementById("decode-panel").classList.toggle("hidden", enc);
+      document.getElementById("tab-encode").classList.toggle("active", enc);
+      document.getElementById("tab-decode").classList.toggle("active", !enc);
+    }
+
+    function sanitizeStem(name) {
+      const base = name.replace(/[/\\]+/g, "_").replace(/^\.+/, "") || "file";
+      return base.replace(/[^A-Za-z0-9._-]+/g, "_").slice(0, 80);
+    }
+
+    function payloadSize() {
+      const custom = document.getElementById("chunk-custom").value;
+      if (custom) return Math.max(1024, Number(custom) | 0);
+      return Number(document.getElementById("chunk-size").value);
+    }
+
+    async function sha256Hex(buf) {
+      const hash = await crypto.subtle.digest("SHA-256", buf);
+      return [...new Uint8Array(hash)].map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    function bytesToBase64(bytes) {
+      const chunk = 0x8000;
+      let binary = "";
+      for (let i = 0; i < bytes.length; i += chunk) {
+        binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+      }
+      return btoa(binary);
+    }
+
+    function wrapBase64(b64, width = 76) {
+      const lines = [];
+      for (let i = 0; i < b64.length; i += width) lines.push(b64.slice(i, i + width));
+      return lines.join("\n") + "\n";
+    }
+
+    function downloadBlob(blob, filename) {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    }
+
+    async function buildPackage(file) {
+      const buf = new Uint8Array(await file.arrayBuffer());
+      const size = buf.byteLength;
+      const digest = await sha256Hex(buf);
+      const payload = payloadSize();
+      const count = Math.max(1, Math.ceil(size / payload) || 1);
+      const stem = sanitizeStem(file.name);
+      const manifest = {
+        protocol: PROTOCOL,
+        original_filename: file.name,
+        original_size: size,
+        original_sha256: digest,
+        encoding: "base64",
+        chunk_encoding: "utf-8",
+        chunk_ext: ".txt",
+        chunk_count: count,
+        chunk_payload_bytes: payload,
+        created_utc: new Date().toISOString(),
+      };
+      const files = [{
+        name: stem + ".manifest.json",
+        text: JSON.stringify(manifest, null, 2) + "\n",
+      }];
+      for (let i = 0; i < count; i++) {
+        const slice = buf.subarray(i * payload, Math.min(size, (i + 1) * payload));
+        files.push({
+          name: stem + ".part-" + String(i + 1).padStart(4, "0") + ".txt",
+          text: wrapBase64(bytesToBase64(slice)),
+        });
+      }
+      return { stem, manifest, files, size, digest, count };
+    }
+
+    // Minimal ZIP (store only) so the user can download one archive without extra libs.
+    function crc32(bytes) {
+      let c = ~0;
+      for (let i = 0; i < bytes.length; i++) {
+        c ^= bytes[i];
+        for (let k = 0; k < 8; k++) c = (c >>> 1) ^ (0xedb88320 & -(c & 1));
+      }
+      return ~c >>> 0;
+    }
+    function u16(n) { return Uint8Array.of(n & 255, (n >>> 8) & 255); }
+    function u32(n) {
+      return Uint8Array.of(n & 255, (n >>> 8) & 255, (n >>> 16) & 255, (n >>> 24) & 255);
+    }
+    function concat(parts) {
+      const total = parts.reduce((n, p) => n + p.length, 0);
+      const out = new Uint8Array(total);
+      let o = 0;
+      for (const p of parts) { out.set(p, o); o += p.length; }
+      return out;
+    }
+    function zipStore(files) {
+      const enc = new TextEncoder();
+      const locals = [];
+      const centrals = [];
+      let offset = 0;
+      for (const f of files) {
+        const name = enc.encode(f.name);
+        const data = enc.encode(f.text);
+        const crc = crc32(data);
+        const local = concat([
+          enc.encode("PK\x03\x04"), u16(20), u16(0), u16(0), u16(0), u16(0),
+          u32(crc), u32(data.length), u32(data.length), u16(name.length), u16(0),
+          name, data,
+        ]);
+        const central = concat([
+          enc.encode("PK\x01\x02"), u16(20), u16(20), u16(0), u16(0), u16(0), u16(0),
+          u32(crc), u32(data.length), u32(data.length), u16(name.length), u16(0),
+          u16(0), u16(0), u16(0), u32(0), u32(offset), name,
+        ]);
+        locals.push(local);
+        centrals.push(central);
+        offset += local.length;
+      }
+      const centralDir = concat(centrals);
+      const end = concat([
+        enc.encode("PK\x05\x06"), u16(0), u16(0), u16(files.length), u16(files.length),
+        u32(centralDir.length), u32(offset), u16(0),
+      ]);
+      return new Blob([concat([...locals, centralDir, end])], { type: "application/zip" });
+    }
+
+    async function encode(asZip) {
+      const file = document.getElementById("src").files[0];
+      if (!file) { log("Pick a file first."); return; }
+      log("Reading " + file.name + " (" + file.size + " bytes)…");
+      const pkg = await buildPackage(file);
+      log(
+        "SHA-256 " + pkg.digest + "\n" +
+        pkg.count + " chunks, stem " + pkg.stem + "\n" +
+        "Attach the manifest and every .part-NNNN.txt in chat."
+      );
+      if (asZip) {
+        downloadBlob(zipStore(pkg.files), pkg.stem + ".chunks.zip");
+      } else {
+        for (const f of pkg.files) {
+          downloadBlob(new Blob([f.text], { type: "text/plain" }), f.name);
+        }
+      }
+    }
+
+    document.getElementById("btn-zip").onclick = () => encode(true);
+    document.getElementById("btn-parts").onclick = () => encode(false);
+
+    const partsInput = document.getElementById("parts");
+    partsInput.onchange = () => {
+      const names = [...partsInput.files].map(f => f.name).sort();
+      document.getElementById("parts-list").textContent = names.join("\n") || "";
+    };
+
+    function b64ToBytes(text) {
+      const compact = text.replace(/\s+/g, "");
+      const bin = atob(compact);
+      const out = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+      return out;
+    }
+
+    document.getElementById("btn-restore").onclick = async () => {
+      const files = [...document.getElementById("parts").files];
+      if (!files.length) { log("Select manifest + chunks."); return; }
+      const byName = Object.fromEntries(files.map(f => [f.name, f]));
+      const manifestFile = files.find(f => f.name.endsWith(".manifest.json"));
+      if (!manifestFile) { log("Missing *.manifest.json"); return; }
+      const manifest = JSON.parse(await manifestFile.text());
+      if (manifest.protocol !== PROTOCOL) {
+        log("Unknown protocol: " + manifest.protocol);
+        return;
+      }
+      const stem = manifestFile.name.replace(/\.manifest\.json$/i, "");
+      const parts = [];
+      for (let i = 1; i <= manifest.chunk_count; i++) {
+        const name = stem + ".part-" + String(i).padStart(4, "0") + ".txt";
+        const f = byName[name];
+        if (!f) { log("Missing " + name); return; }
+        parts.push(b64ToBytes(await f.text()));
+      }
+      const total = parts.reduce((n, p) => n + p.length, 0);
+      const out = new Uint8Array(total);
+      let o = 0;
+      for (const p of parts) { out.set(p, o); o += p.length; }
+      const digest = await sha256Hex(out);
+      if (out.length !== manifest.original_size || digest !== manifest.original_sha256) {
+        log("Checksum failed.\nrestored size " + out.length + " sha " + digest +
+            "\nmanifest size " + manifest.original_size + " sha " + manifest.original_sha256);
+        return;
+      }
+      const name = (manifest.original_filename || "restored.bin").split(/[/\\]/).pop();
+      downloadBlob(new Blob([out]), name);
+      log("Restored " + name + " (" + out.length + " bytes)\nsha256 " + digest);
+    };
+  </script>
+</body>
+</html>
