@@ -8,3 +8,6 @@
 | `tools/soup` | Soup (`soup-cli`) — LoRA 8B on 4 GB via layer streaming | llm, finetune, lora, local-gpu | [tools/soup.md](tools/soup.md) |
 | `tools/agent-reach` | Agent Reach — unofficial multi-platform read/search for coding agents | claude-code, scraping, skills | [tools/agent-reach.md](tools/agent-reach.md) |
 | `claude-code/playlist-stack` | Verified Claude Code tools named in those shorts | claude-code, plugins, cli-anything, council | [claude-code/playlist-stack.md](claude-code/playlist-stack.md) |
+| `hosting/railway` | Railway — container PaaS (apps, DBs, workers) | hosting, paas, docker, postgres, agents | [hosting/railway.md](hosting/railway.md) |
+| `hosting/vercel` | Vercel — Next.js / Fluid / AI SDK platform | hosting, nextjs, serverless, cdn, ai-sdk | [hosting/vercel.md](hosting/vercel.md) |
+| `hosting/railway-vs-vercel` | When to pick Railway vs Vercel | hosting, comparison | [hosting/railway-vs-vercel.md](hosting/railway-vs-vercel.md) |

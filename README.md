@@ -18,3 +18,6 @@ Durable **knowledge library for AI agents**. Humans dump interesting tools and w
 | [Soup](knowledge/tools/soup.md) | Local LoRA fine-tune of 8B on a 4 GB laptop GPU (`soup-cli`). |
 | [Agent Reach](knowledge/tools/agent-reach.md) | Skill/CLI that wires unofficial readers for X/Reddit/YouTube/… |
 | [Claude Code stack from the shorts](knowledge/claude-code/playlist-stack.md) | CLI-Anything, council, plugins — minus the fake “secret codes”. |
+| [Railway](knowledge/hosting/railway.md) | Container PaaS: API + Postgres + workers, usage billed per second. |
+| [Vercel](knowledge/hosting/vercel.md) | Next.js / CDN / Fluid functions / AI SDK. Preview on every PR. |
+| [Railway vs Vercel](knowledge/hosting/railway-vs-vercel.md) | Request-shaped compute → Vercel; process-shaped → Railway. |
