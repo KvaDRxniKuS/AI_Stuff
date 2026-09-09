@@ -14,3 +14,7 @@ Durable **knowledge library for AI agents**. Humans dump interesting tools and w
 | --- | --- |
 | [text-to-cad](knowledge/cad/text-to-cad.md) | Local CAD via agent skills (`cadgen` / build123d), not a 3D generative net. Runnable in Arena. |
 | [chunked file ingest](knowledge/sandbox/chunked-file-ingest.md) | HTML encoder splits any file into allow-listed chunks so sandboxes can reconstruct past upload caps. |
+| [playlist «Ии»](knowledge/playlists/ii-ply8rck9gojyq.md) | 12 unlisted shorts fact-checked; most are AI ads. |
+| [Soup](knowledge/tools/soup.md) | Local LoRA fine-tune of 8B on a 4 GB laptop GPU (`soup-cli`). |
+| [Agent Reach](knowledge/tools/agent-reach.md) | Skill/CLI that wires unofficial readers for X/Reddit/YouTube/… |
+| [Claude Code stack from the shorts](knowledge/claude-code/playlist-stack.md) | CLI-Anything, council, plugins — minus the fake “secret codes”. |
