@@ -21,3 +21,4 @@ Durable **knowledge library for AI agents**. Humans dump interesting tools and w
 | [Railway](knowledge/hosting/railway.md) | Container PaaS: API + Postgres + workers, usage billed per second. |
 | [Vercel](knowledge/hosting/vercel.md) | Next.js / CDN / Fluid functions / AI SDK. Preview on every PR. |
 | [Railway vs Vercel](knowledge/hosting/railway-vs-vercel.md) | Request-shaped compute → Vercel; process-shaped → Railway. |
+| [Claude system prompt “leaks”](knowledge/prompts/claude-system-prompt-leaks.md) | Public extracts exist; shorts oversell secrecy and character counts. |

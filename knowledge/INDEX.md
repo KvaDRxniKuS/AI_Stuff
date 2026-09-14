@@ -11,3 +11,4 @@
 | `hosting/railway` | Railway — container PaaS (apps, DBs, workers) | hosting, paas, docker, postgres, agents | [hosting/railway.md](hosting/railway.md) |
 | `hosting/vercel` | Vercel — Next.js / Fluid / AI SDK platform | hosting, nextjs, serverless, cdn, ai-sdk | [hosting/vercel.md](hosting/vercel.md) |
 | `hosting/railway-vs-vercel` | When to pick Railway vs Vercel | hosting, comparison | [hosting/railway-vs-vercel.md](hosting/railway-vs-vercel.md) |
+| `prompts/claude-system-prompt-leaks` | Claude Fable “leaked” system prompts — repo is real, short is hype | claude, fable, system-prompt | [prompts/claude-system-prompt-leaks.md](prompts/claude-system-prompt-leaks.md) |
