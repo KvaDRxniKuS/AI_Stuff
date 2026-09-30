@@ -12,3 +12,4 @@
 | `hosting/vercel` | Vercel — Next.js / Fluid / AI SDK platform | hosting, nextjs, serverless, cdn, ai-sdk | [hosting/vercel.md](hosting/vercel.md) |
 | `hosting/railway-vs-vercel` | When to pick Railway vs Vercel | hosting, comparison | [hosting/railway-vs-vercel.md](hosting/railway-vs-vercel.md) |
 | `prompts/claude-system-prompt-leaks` | Claude Fable “leaked” system prompts — repo is real, short is hype | claude, fable, system-prompt | [prompts/claude-system-prompt-leaks.md](prompts/claude-system-prompt-leaks.md) |
+| `models/mimo-v2.6` | Xiaomi MiMo-V2.6 — open-weight omnimodal MoE | llm, xiaomi, moe, multimodal | [models/mimo-v2.6.md](models/mimo-v2.6.md) |
