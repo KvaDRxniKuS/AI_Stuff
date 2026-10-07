@@ -14,3 +14,4 @@
 | `prompts/claude-system-prompt-leaks` | Claude Fable “leaked” system prompts — repo is real, short is hype | claude, fable, system-prompt | [prompts/claude-system-prompt-leaks.md](prompts/claude-system-prompt-leaks.md) |
 | `models/mimo-v2.6` | Xiaomi MiMo-V2.6 — open-weight omnimodal MoE | llm, xiaomi, moe, multimodal | [models/mimo-v2.6.md](models/mimo-v2.6.md) |
 | `tools/openai-codex` | OpenAI Codex — 2026 coding agent (not the 2021 model) | openai, cli, agents | [tools/openai-codex.md](tools/openai-codex.md) |
+| `gamedev/blueprintue` | blueprintUE — Pastebin for Unreal Blueprints | unreal, blueprint, pastebin | [gamedev/blueprintue.md](gamedev/blueprintue.md) |
