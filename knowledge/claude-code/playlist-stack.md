@@ -39,6 +39,8 @@ Karpathy-style propose → cross-examine → synthesize, implemented as **isolat
 - write-ups / plugins titled “Council” (five thinking styles + chairman HTML)
 - [aiwithremy/claude-skills-llm-council](https://github.com/aiwithremy/claude-skills-llm-council)
 
+Larger cousin (not in this playlist): [arena-skill](arena-skill.md) — `/arena` 100-agent single-elim bracket. Same “many Claudes” marketing; different repo. Not Arena.ai.
+
 Heavy (5–6 extra agent calls). Use for **irreversible decisions**, not for naming a function. The short’s `/council` is not an official Anthropic command.
 
 ## 4. Design skills (videos 3, 6, 8)
