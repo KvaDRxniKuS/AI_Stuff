@@ -1,13 +1,13 @@
 # Claude Code stack named in the «Ии» shorts (verified)
 
 - **Tags:** claude-code, plugins, skills, council, cli-anything, omniroute, strix
-- **Verified as of:** 2026-09-09
-- **Sources:** playlist transcripts (see [ii-ply8rck9gojyq.md](../playlists/ii-ply8rck9gojyq.md)) + upstream repos
-- **Related:** [agent-reach.md](../tools/agent-reach.md), [soup.md](../tools/soup.md)
+- **Verified as of:** 2026-10-13
+- **Sources:** playlist (see [ii-ply8rck9gojyq.md](../playlists/ii-ply8rck9gojyq.md)) + upstream repos
+- **Related:** [agent-reach.md](../tools/agent-reach.md), [soup.md](../tools/soup.md), [arena-skill.md](arena-skill.md)
 
 ## Кратко
 
-Из 12 роликов для агента полезны **не промпт-«коды»**, а несколько реальных репо. Ниже — только то, что удалось привязать к GitHub/докам. ASR в транскриптах врёт имена.
+Из **40** роликов для агента полезны **не промпт-«коды»**, а несколько реальных репо. Ниже — только то, что удалось привязать к GitHub/докам. Новые нарезки часто **без имён в тайтле** — их не ставим.
 
 ## 1. Prompt “codes” (video 1) — skip as a product
 
@@ -42,6 +42,10 @@ Karpathy-style propose → cross-examine → synthesize, implemented as **isolat
 Larger cousin (not in this playlist): [arena-skill](arena-skill.md) — `/arena` 100-agent single-elim bracket. Same “many Claudes” marketing; different repo. Not Arena.ai.
 
 Heavy (5–6 extra agent calls). Use for **irreversible decisions**, not for naming a function. The short’s `/council` is not an official Anthropic command.
+
+## 3b. ECC — “63 agents” (videos 26, 30) — real pack, oversold
+
+[affaan-m/ECC](https://github.com/affaan-m/ECC) (MIT, site [ecc.tools](https://ecc.tools); old name Everything Claude Code). Markdown **skills/agents/instincts** for Claude Code / Codex / others — planner, reviewer, etc. **Not** 63 concurrent employees. OSS free; **ECC Pro** GitHub App is a separate paid SKU. Install only from that GitHub / `ecc@ecc` / listed npm — README warns about malware mirrors. Tokens still yours. Skip on Arena.
 
 ## 4. Design skills (videos 3, 6, 8)
 
@@ -86,10 +90,12 @@ On a **user’s Claude Code** machine, a sane subset of the shorts is:
 2. One design skill (`frontend-design` or apple-design) if they ship UI.
 3. Agent Reach **only** if they need cookie-gated social platforms.
 4. CLI-Anything **only** if they need a specific desktop app with no MCP.
-5. Council for big decisions.
+5. Council for big decisions; ECC only if they want a huge skill pack (not default).
 6. Soup ([soup.md](../tools/soup.md)) if they actually want a local fine-tune.
 
-On **Arena**: none of the above are required for normal coding. Soup needs their GPU. Agent Reach cookies are not in the sandbox. OmniRoute is a local proxy.
+Also in the 2026-10 playlist, **not Claude plugins:** [gods-eye-view](https://github.com/bilawalsidhu/gods-eye-view) (public globe OSINT), [yc-software/qm](https://github.com/yc-software/qm) (YC harness ≠ YC admission), MiMo / Fable leak notes already in this repo.
+
+On **Arena**: none of the above are required for normal coding. Soup needs their GPU. Agent Reach cookies are not in the sandbox. OmniRoute is a local proxy. LinkedIn “11 agents” = skip.
 
 ## Pitfalls
 
