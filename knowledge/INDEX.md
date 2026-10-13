@@ -16,3 +16,4 @@
 | `tools/openai-codex` | OpenAI Codex — 2026 coding agent (not the 2021 model) | openai, cli, agents | [tools/openai-codex.md](tools/openai-codex.md) |
 | `claude-code/arena-skill` | `/arena` — 100 Claude Code sub-agents, not Arena.ai | claude-code, tournament | [claude-code/arena-skill.md](claude-code/arena-skill.md) |
 | `gamedev/blueprintue` | blueprintUE — Pastebin for Unreal Blueprints | unreal, blueprint, pastebin | [gamedev/blueprintue.md](gamedev/blueprintue.md) |
+| `media/artcraft` | ArtCraft — free OSS studio; credits optional / BYOK | artcraft, image-gen, video, byok | [media/artcraft.md](media/artcraft.md) |

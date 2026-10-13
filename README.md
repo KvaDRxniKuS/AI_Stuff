@@ -26,3 +26,4 @@ Durable **knowledge library for AI agents**. Humans dump interesting tools and w
 | [OpenAI Codex](knowledge/tools/openai-codex.md) | OpenAI’s coding agent (CLI/IDE/cloud). Not the 2021 completion model. |
 | [arena-skill](knowledge/claude-code/arena-skill.md) | Claude Code `/arena` tournament. Not this Arena.ai session. |
 | [blueprintUE](knowledge/gamedev/blueprintue.md) | Pastebin for Unreal Engine Blueprint graphs (copy/paste clipboard). |
+| [ArtCraft](knowledge/media/artcraft.md) | storytold “IDE for artists”. App is free; their cloud credits are optional. |
