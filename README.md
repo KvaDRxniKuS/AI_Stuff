@@ -25,5 +25,6 @@ Durable **knowledge library for AI agents**. Humans dump interesting tools and w
 | [MiMo-V2.6](knowledge/models/mimo-v2.6.md) | Xiaomi open-weight omnimodal MoE (Pro 1.02T/42B, Flash, 1M ctx, MIT). |
 | [OpenAI Codex](knowledge/tools/openai-codex.md) | OpenAI’s coding agent (CLI/IDE/cloud). Not the 2021 completion model. |
 | [arena-skill](knowledge/claude-code/arena-skill.md) | Claude Code `/arena` tournament. Not this Arena.ai session. |
+| [Cheap-model routing](knowledge/claude-code/cheap-model-routing.md) | “Claude грузчик” shorts: native `/model` first, random routers skip. |
 | [blueprintUE](knowledge/gamedev/blueprintue.md) | Pastebin for Unreal Engine Blueprint graphs (copy/paste clipboard). |
 | [ArtCraft](knowledge/media/artcraft.md) | storytold “IDE for artists”. App is free; their cloud credits are optional. |

@@ -82,6 +82,10 @@ Official-ish frontend skill: Anthropic `frontend-design` plugin (marketplace `an
 | **Find Skills** | Skill that shells out to `npx skills find` / skills.sh | Fine as a discovery helper; 90k “skills” is a directory scrape, quality varies. |
 | **Claude Code Setup** | Official-ish Anthropic plugin that **recommends** hooks/skills/MCP for a repo | Read-only recommender. Good first install. Confirm current name with `/plugin` marketplace `anthropics`. |
 
+## 7. Standalone short `_W1Gr5XH42M` — cheap-model routing
+
+Not in the «Ии» playlist. Same OmniRoute pitch: don’t pay Opus to be a loader. **No GitHub in the title.** Native subagents + `/model` first. See [cheap-model-routing.md](cheap-model-routing.md).
+
 ## How agents should use this
 
 On a **user’s Claude Code** machine, a sane subset of the shorts is:
