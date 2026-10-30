@@ -26,6 +26,7 @@ Durable **knowledge library for AI agents**. Humans dump interesting tools and w
 | [OpenAI Codex](knowledge/tools/openai-codex.md) | OpenAI’s coding agent (CLI/IDE/cloud). Not the 2021 completion model. |
 | [arena-skill](knowledge/claude-code/arena-skill.md) | Claude Code `/arena` tournament. Not this Arena.ai session. |
 | [Cheap-model routing](knowledge/claude-code/cheap-model-routing.md) | “Claude грузчик” shorts: native `/model` first, random routers skip. |
+| [Roast Room](knowledge/claude-code/roast-room.md) | Claude Code council of simulated Bezos/PG/Buffett. Not this Arena. |
 | [blueprintUE](knowledge/gamedev/blueprintue.md) | Pastebin for Unreal Engine Blueprint graphs (copy/paste clipboard). |
 | [Co-op Anything](knowledge/gamedev/coop-anything.md) | Agent skills to revive/build co-op mods. Not a one-click multiplayer. |
 | [ArtCraft](knowledge/media/artcraft.md) | storytold “IDE for artists”. App is free; their cloud credits are optional. |

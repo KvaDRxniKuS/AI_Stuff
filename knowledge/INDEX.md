@@ -16,6 +16,7 @@
 | `tools/openai-codex` | OpenAI Codex — 2026 coding agent (not the 2021 model) | openai, cli, agents | [tools/openai-codex.md](tools/openai-codex.md) |
 | `claude-code/arena-skill` | `/arena` — 100 Claude Code sub-agents, not Arena.ai | claude-code, tournament | [claude-code/arena-skill.md](claude-code/arena-skill.md) |
 | `claude-code/cheap-model-routing` | “Claude as a loader” shorts — routing, not a named repo | claude-code, tokens, router | [claude-code/cheap-model-routing.md](claude-code/cheap-model-routing.md) |
+| `claude-code/roast-room` | Roast Room — celebrity-persona council in Claude Code | claude-code, council | [claude-code/roast-room.md](claude-code/roast-room.md) |
 | `gamedev/blueprintue` | blueprintUE — Pastebin for Unreal Blueprints | unreal, blueprint, pastebin | [gamedev/blueprintue.md](gamedev/blueprintue.md) |
 | `gamedev/coop-anything` | Co-op Anything — agent playbook to add co-op to SP games | games, mods, claude-code | [gamedev/coop-anything.md](gamedev/coop-anything.md) |
 | `media/artcraft` | ArtCraft — free OSS studio; credits optional / BYOK | artcraft, image-gen, video, byok | [media/artcraft.md](media/artcraft.md) |
