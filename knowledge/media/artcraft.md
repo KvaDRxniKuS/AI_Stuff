@@ -15,7 +15,7 @@
 
 ## What it actually is
 
-Not a coding agent. Not the PhotoCraft “Adobe clone” suite (those are **other** `storytold/*craft` repos). This repo is the **generation studio**: compose the shot, then call image/video/3D/audio models.
+Not a coding agent. Not the PhotoCraft “Adobe clone” suite (those are **other** `storytold/*craft` repos). This repo is the **generation studio**: compose the shot, then call image/video/3D/audio models. Related, different product: [Craft Anything](../tools/craft-anything.md) (inspect → rebuild software).
 
 | Layer | Cost |
 | --- | --- |

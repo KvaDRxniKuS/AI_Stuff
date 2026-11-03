@@ -20,3 +20,4 @@
 | `gamedev/blueprintue` | blueprintUE — Pastebin for Unreal Blueprints | unreal, blueprint, pastebin | [gamedev/blueprintue.md](gamedev/blueprintue.md) |
 | `gamedev/coop-anything` | Co-op Anything — agent playbook to add co-op to SP games | games, mods, claude-code | [gamedev/coop-anything.md](gamedev/coop-anything.md) |
 | `media/artcraft` | ArtCraft — free OSS studio; credits optional / BYOK | artcraft, image-gen, video, byok | [media/artcraft.md](media/artcraft.md) |
+| `tools/craft-anything` | Craft Anything — inspect then rebuild (early alpha) | storytold, reverse-engineering, claude-code | [tools/craft-anything.md](tools/craft-anything.md) |

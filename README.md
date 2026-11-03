@@ -30,3 +30,4 @@ Durable **knowledge library for AI agents**. Humans dump interesting tools and w
 | [blueprintUE](knowledge/gamedev/blueprintue.md) | Pastebin for Unreal Engine Blueprint graphs (copy/paste clipboard). |
 | [Co-op Anything](knowledge/gamedev/coop-anything.md) | Agent skills to revive/build co-op mods. Not a one-click multiplayer. |
 | [ArtCraft](knowledge/media/artcraft.md) | storytold “IDE for artists”. App is free; their cloud credits are optional. |
+| [Craft Anything](knowledge/tools/craft-anything.md) | storytold inspect-then-rebuild engine. Alpha. Not ArtCraft. |
