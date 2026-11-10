@@ -29,5 +29,6 @@ Durable **knowledge library for AI agents**. Humans dump interesting tools and w
 | [Roast Room](knowledge/claude-code/roast-room.md) | Claude Code council of simulated Bezos/PG/Buffett. Not this Arena. |
 | [blueprintUE](knowledge/gamedev/blueprintue.md) | Pastebin for Unreal Engine Blueprint graphs (copy/paste clipboard). |
 | [Co-op Anything](knowledge/gamedev/coop-anything.md) | Agent skills to revive/build co-op mods. Not a one-click multiplayer. |
+| [AnyPS5](knowledge/gamedev/anyps5.md) | Relink PS5 executables to Linux/Windows. Not an emulator; early 0.1.x. |
 | [ArtCraft](knowledge/media/artcraft.md) | storytold “IDE for artists”. App is free; their cloud credits are optional. |
 | [Craft Anything](knowledge/tools/craft-anything.md) | storytold inspect-then-rebuild engine. Alpha. Not ArtCraft. |

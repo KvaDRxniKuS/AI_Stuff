@@ -19,5 +19,6 @@
 | `claude-code/roast-room` | Roast Room — celebrity-persona council in Claude Code | claude-code, council | [claude-code/roast-room.md](claude-code/roast-room.md) |
 | `gamedev/blueprintue` | blueprintUE — Pastebin for Unreal Blueprints | unreal, blueprint, pastebin | [gamedev/blueprintue.md](gamedev/blueprintue.md) |
 | `gamedev/coop-anything` | Co-op Anything — agent playbook to add co-op to SP games | games, mods, claude-code | [gamedev/coop-anything.md](gamedev/coop-anything.md) |
+| `gamedev/anyps5` | AnyPS5 — PS5 executable relinker to Linux/Windows (early 0.1.x) | ps5, relinker, gpl2 | [gamedev/anyps5.md](gamedev/anyps5.md) |
 | `media/artcraft` | ArtCraft — free OSS studio; credits optional / BYOK | artcraft, image-gen, video, byok | [media/artcraft.md](media/artcraft.md) |
 | `tools/craft-anything` | Craft Anything — inspect then rebuild (early alpha) | storytold, reverse-engineering, claude-code | [tools/craft-anything.md](tools/craft-anything.md) |
